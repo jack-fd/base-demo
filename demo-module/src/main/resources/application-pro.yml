@@ -4,7 +4,7 @@ spring:
     driverClassName: com.mysql.jdbc.Driver
     druid:
       db1:
-        url: jdbc:mysql://localhost:3306/demo?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&zeroDateTimeBehavior=convertToNull
+        url: jdbc:mysql://localhost:3306/db1?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&zeroDateTimeBehavior=convertToNull
         username: root
         password: root
         initial-size: 10
@@ -20,7 +20,7 @@ spring:
         test-on-borrow: false
         test-on-return: false
       db2:
-        url: jdbc:mysql://localhost:3306/demo?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&zeroDateTimeBehavior=convertToNull
+        url: jdbc:mysql://localhost:3306/db2?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&zeroDateTimeBehavior=convertToNull
         username: root
         password: root
         initial-size: 10

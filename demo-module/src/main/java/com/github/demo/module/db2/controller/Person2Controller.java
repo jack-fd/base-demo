@@ -1,12 +1,12 @@
-package com.github.demo.module.db1.controller;
+package com.github.demo.module.db2.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.github.demo.common.util.RestResult;
 import com.github.demo.common.util.ValidatorUtils;
 import com.github.demo.common.util.Query;
-import com.github.demo.module.db1.model.entity.Person1;
-import com.github.demo.module.db1.service.Person1Service;
+import com.github.demo.module.db2.model.entity.Person2;
+import com.github.demo.module.db2.service.Person2Service;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -24,22 +24,22 @@ import java.util.Arrays;
  */
 @Slf4j
 @RestController
-@Api(tags = "人员表接口(DB1)")
-@RequestMapping("/api/finance/db1/person1")
-public class Person1Controller {
+@Api(tags = "人员表接口(DB2)")
+@RequestMapping("/api/finance/db2/person2")
+public class Person2Controller {
 
     @Autowired
-    private Person1Service person1Service;
+    private Person2Service person2Service;
 
     /**
      * 列表
      */
     @ApiOperation("列表")
     @RequestMapping(value = "/list", method = RequestMethod.POST)
-    public RestResult list(@RequestBody Query query) {
-        IPage<Person1> page = query.getPagination();
-        QueryWrapper<Person1> queryWrapper = query.getQueryWrapper();
-        return RestResult.ok(person1Service.page(page, queryWrapper));
+    public RestResult<IPage<Person2>> list(@RequestBody Query query) {
+        IPage<Person2> page = query.getPagination();
+        QueryWrapper<Person2> queryWrapper = query.getQueryWrapper();
+        return RestResult.ok(person2Service.page(page, queryWrapper));
     }
 
 
@@ -48,8 +48,8 @@ public class Person1Controller {
      */
     @ApiOperation("信息")
     @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
-    public RestResult info(@PathVariable("id") Integer id) {
-        Person1 entity = person1Service.getById(id);
+    public RestResult<Person2> info(@PathVariable("id") Integer id) {
+        Person2 entity = person2Service.getById(id);
         return RestResult.ok(entity);
     }
 
@@ -58,8 +58,8 @@ public class Person1Controller {
      */
     @ApiOperation("保存")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public RestResult save(@RequestBody Person1 person1) {
-        person1Service.save(person1);
+    public RestResult<String> save(@RequestBody Person2 person2) {
+        person2Service.save(person2);
         return RestResult.ok();
     }
 
@@ -68,9 +68,9 @@ public class Person1Controller {
      */
     @ApiOperation("修改")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public RestResult update(@RequestBody Person1 person1) {
-        ValidatorUtils.validateEntity(person1);
-        person1Service.updateById(person1);
+    public RestResult<String> update(@RequestBody Person2 person2) {
+        ValidatorUtils.validateEntity(person2);
+        person2Service.updateById(person2);
         return RestResult.ok();
     }
 
@@ -79,8 +79,8 @@ public class Person1Controller {
      */
     @ApiOperation("删除")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public RestResult delete(@RequestBody Integer[] ids) {
-        person1Service.removeByIds(Arrays.asList(ids));
+    public RestResult<String> delete(@RequestBody Integer[] ids) {
+        person2Service.removeByIds(Arrays.asList(ids));
         return RestResult.ok();
     }
 
