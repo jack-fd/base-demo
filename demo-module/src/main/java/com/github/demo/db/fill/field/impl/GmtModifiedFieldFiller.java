@@ -4,7 +4,7 @@ import com.github.demo.db.fill.field.FieldFiller;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * 修改时间填充器
@@ -23,7 +23,7 @@ public class GmtModifiedFieldFiller implements FieldFiller {
     public void doFiller(MetaObject metaObject) {
         if (metaObject.hasSetter(FIELD_NAME)) {
             log.debug("start insert fill {}", FIELD_NAME);
-            metaObject.setValue(FIELD_NAME, new Date());
+            metaObject.setValue(FIELD_NAME, LocalDateTime.now());
         }
     }
 }

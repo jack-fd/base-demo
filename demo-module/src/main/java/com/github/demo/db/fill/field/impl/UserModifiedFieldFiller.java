@@ -21,7 +21,7 @@ public class UserModifiedFieldFiller implements FieldFiller {
     public void doFiller(MetaObject metaObject) {
         if (metaObject.hasSetter(FIELD_NAME)) {
             log.debug("start insert fill {}", FIELD_NAME);
-            metaObject.setValue(FIELD_NAME, "0");
+            metaObject.setValue(FIELD_NAME, 0);
         }
     }
 }
