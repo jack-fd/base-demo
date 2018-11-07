@@ -33,21 +33,21 @@ public class Person1 implements Serializable {
     private LocalDateTime gmtCreate;
 
     /**
-     * 创建时间
+     * 修改时间
      */
     @JsonIgnore
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime gmtModified;
 
     /**
-     * 创建时间
+     * 创建用户
      */
     @JsonIgnore
     @TableField(fill = FieldFill.INSERT)
     private Integer userCreate;
 
     /**
-     * 创建时间
+     * 修改用户
      */
     @JsonIgnore
     @TableField(fill = FieldFill.INSERT_UPDATE)
