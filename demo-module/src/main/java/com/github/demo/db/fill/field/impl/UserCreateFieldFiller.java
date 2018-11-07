@@ -15,7 +15,7 @@ public class UserCreateFieldFiller implements FieldFiller {
     /**
      * 属性名称
      */
-    private static final String FIELD_NAME = "user_create";
+    private static final String FIELD_NAME = "userCreate";
 
     @Override
     public void doFiller(MetaObject metaObject) {

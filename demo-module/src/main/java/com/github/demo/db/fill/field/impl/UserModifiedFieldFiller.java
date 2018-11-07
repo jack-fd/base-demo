@@ -15,7 +15,7 @@ public class UserModifiedFieldFiller implements FieldFiller {
     /**
      * 属性名称
      */
-    private static final String FIELD_NAME = "user_modified";
+    private static final String FIELD_NAME = "userModified";
 
     @Override
     public void doFiller(MetaObject metaObject) {

@@ -17,7 +17,7 @@ public class GmtCreateFieldFiller implements FieldFiller {
     /**
      * 属性名称
      */
-    private static final String FIELD_NAME = "gmt_create";
+    private static final String FIELD_NAME = "gmtCreate";
 
     @Override
     public void doFiller(MetaObject metaObject) {
