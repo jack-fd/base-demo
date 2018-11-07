@@ -1,0 +1,64 @@
+package $!{package.Entity};
+
+import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+#if($!{entityLombokModel})
+import lombok.Data;
+#end
+import java.io.Serializable;
+import java.util.Date;
+import java.time.LocalDateTime;
+
+/**
+ * $!{table.comment}
+ *
+ * @author $!{author}
+ * @date $!{date}
+ */
+#if($!{entityLombokModel})
+@Data
+#end
+@TableName("$!{table.name}")
+public class $!{entity} implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+#foreach ($field in $!{table.fields})
+#if("$!field.comment" != "")
+    /**
+     * $!{field.comment}
+     */
+#end
+## 主键
+#if($!{field.keyFlag})
+    @TableId
+#end
+## 创建人id
+#if($!{field.name} == "user_create")
+    @JsonIgnore
+    @TableField(fill = FieldFill.INSERT)
+#end
+## 更新人id
+#if($!{field.name} == "user_modified")
+    @JsonIgnore
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+#end
+## 创建时间
+#if($!{field.name} == "gmt_create")
+    @JsonIgnore
+    @TableField(fill = FieldFill.INSERT)
+#end
+## 更新时间
+#if($!{field.name} == "gmt_modified")
+    @JsonIgnore
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+#end
+## 逻辑删除
+#if($!{field.name} == "deleted")
+    @JsonIgnore
+    @TableLogic
+#end
+    private $!{field.propertyType} $!{field.propertyName};
+
+#end
+}

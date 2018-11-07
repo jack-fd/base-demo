@@ -1,0 +1,87 @@
+package $!{package.Controller};
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.github.demo.common.util.RestResult;
+import com.github.demo.common.util.ValidatorUtils;
+import com.github.demo.common.util.Query;
+import $!{package.Entity}.$!{entity};
+import $!{package.Service}.$!{entity}Service;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+
+
+/**
+ * $!{table.comment} 控制器
+ *
+ * @author $!{author}
+ * @date $!{date}
+ */
+@Slf4j
+@RestController
+@Api(tags = "$!{table.comment}接口")
+@RequestMapping("/api/finance/$!{package.ModuleName}/$!{table.entityPath}")
+public class $!{entity}Controller {
+
+    @Autowired
+    private $!{table.serviceName} $!{table.entityPath}Service;
+
+    /**
+     * 列表
+     */
+    @ApiOperation("列表")
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    public RestResult list(@RequestBody Query query) {
+        IPage<$!{entity}> page = query.getPagination();
+        QueryWrapper<$!{entity}> queryWrapper = query.getQueryWrapper();
+        return RestResult.ok($!{table.entityPath}Service.page(page, queryWrapper));
+    }
+
+
+    /**
+     * 信息
+     */
+    @ApiOperation("信息")
+    @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
+    public RestResult info(@PathVariable("id") Integer id) {
+        $!{entity} entity = $!{table.entityPath}Service.getById(id);
+        return RestResult.ok(entity);
+    }
+
+    /**
+     * 保存
+     */
+    @ApiOperation("保存")
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public RestResult save(@RequestBody $!{entity} $!{table.entityPath}) {
+        $!{table.entityPath}Service.save($!{table.entityPath});
+        return RestResult.ok();
+    }
+
+    /**
+     * 修改
+     */
+    @ApiOperation("修改")
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public RestResult update(@RequestBody $!{entity} $!{table.entityPath}) {
+        ValidatorUtils.validateEntity($!{table.entityPath});
+        $!{table.entityPath}Service.updateById($!{table.entityPath});
+        return RestResult.ok();
+    }
+
+    /**
+     * 删除
+     */
+    @ApiOperation("删除")
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public RestResult delete(@RequestBody Integer[] ids) {
+        $!{table.entityPath}Service.removeByIds(Arrays.asList(ids));
+        return RestResult.ok();
+    }
+
+}
