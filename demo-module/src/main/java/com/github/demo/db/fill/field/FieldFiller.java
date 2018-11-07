@@ -1,5 +1,6 @@
 package com.github.demo.db.fill.field;
 
+import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;
 
 /**
@@ -14,5 +15,5 @@ public interface FieldFiller {
      *
      * @param metaObject 字段
      */
-    void doFiller(MetaObject metaObject);
+    void doFiller(MetaObjectHandler metaObjectHandler, MetaObject metaObject);
 }

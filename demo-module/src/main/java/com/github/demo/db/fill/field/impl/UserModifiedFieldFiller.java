@@ -1,5 +1,6 @@
 package com.github.demo.db.fill.field.impl;
 
+import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.github.demo.db.fill.field.FieldFiller;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
@@ -18,10 +19,10 @@ public class UserModifiedFieldFiller implements FieldFiller {
     private static final String FIELD_NAME = "userModified";
 
     @Override
-    public void doFiller(MetaObject metaObject) {
+    public void doFiller(MetaObjectHandler metaObjectHandler, MetaObject metaObject) {
         if (metaObject.hasSetter(FIELD_NAME)) {
             log.debug("start insert fill {}", FIELD_NAME);
-            metaObject.setValue(FIELD_NAME, 0);
+            metaObjectHandler.setFieldValByName(FIELD_NAME, 0, metaObject);
         }
     }
 }
